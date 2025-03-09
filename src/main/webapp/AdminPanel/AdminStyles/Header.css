@@ -1,0 +1,119 @@
+@charset "UTF-8";
+/* General Header Styles */
+.header {
+    background-color: #f0f3f6;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Left Section */
+.header-left {
+    font-size: 14px;
+}
+
+.email-link {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.email-link:hover {
+    color: #007bff;
+}
+
+/* Right Section */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.phone {
+    font-size: 14px;
+    color: #000;
+}
+
+/* Profile Link */
+.profile-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-link:hover {
+    color: #28a745; /* Green color on hover */
+}
+
+/* Complain Link */
+.complain-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.complain-link:hover {
+    color: #dc3545; /* Red color on hover */
+}
+
+/* Login Button */
+.login-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .login-button {
+        width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .email-link,
+    .phone,
+    .complain-link,
+    .profile-link {
+        font-size: 12px;
+    }
+
+    .login-button {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}

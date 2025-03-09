@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+  
+.footer-container {
+    background-color: #f3f4f6; /* Light gray */
+    padding: 2.5rem 1rem;
+    font-family: Arial, sans-serif;
+    margin-top: 1%;
+    justify-content: space-between;
+  }
+  
+  /* Footer grid layout */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 1%;
+    
+  }
+  
+  /* Section titles */
+  .footer-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  /* Navigation and Contact Links */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 0.875rem;
+  }
+  
+  /* Contact item styling */
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  
+  /* Social media icons */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+  }
+  
+  .icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Makes the icons round */
+  }
+  
+  /* Footer bottom */
+  .footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: #888;
+  }
