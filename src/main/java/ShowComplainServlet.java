@@ -102,6 +102,7 @@ public class ShowComplainServlet extends HttpServlet {
         }
 
         // Close HTML structure
+        pw.println("<a href='AdminPanel/adminPanel.jsp' class='btn btn-secondary mt-3'>Back to Admin Panel</a>");
         pw.println("</div>");
         pw.println("</body></html>");
     }

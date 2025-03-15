@@ -62,7 +62,7 @@ public class UpdateServlet extends HttpServlet {
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
-                response.sendRedirect("ShowAllPatientServlet"); // Redirect to the patient list after update
+                response.sendRedirect("ShowAllPatient"); // Redirect to the patient list after update
             } else {
                 response.getWriter().println("Error: Patient not found or update failed.");
             }

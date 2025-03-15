@@ -1,0 +1,111 @@
+@charset "UTF-8";
+.image-preview {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-height: 220px;
+    background-color: #f8f9fa;
+}
+
+.image-preview img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.add-doctor-page {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.add-doctor-form {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Slightly wider for better spacing */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid #007bff;
+}
+
+.add-doctor-form input,
+.add-doctor-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-doctor-form input:focus,
+.add-doctor-form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+.add-doctor-form textarea {
+    resize: none;
+    height: 100px;
+}
+
+.submit-btn1 {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.submit-btn1:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .add-doctor-page {
+        padding: 15px;
+    }
+
+    .add-doctor-form {
+        padding: 25px;
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .image-preview {
+        max-height: 150px; /* Scales better on smaller screens */
+    }
+}

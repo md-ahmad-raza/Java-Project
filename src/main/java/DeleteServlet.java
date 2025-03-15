@@ -49,7 +49,7 @@ public class DeleteServlet extends HttpServlet {
 
             int rowsDeleted = ps.executeUpdate();
             if (rowsDeleted > 0) {
-                response.sendRedirect("ShowAllPatientServlet"); // Redirect to the patient list after deletion
+                response.sendRedirect("ShowAllPatient"); // Redirect to the patient list after deletion
             } else {
                 response.getWriter().println("Error: Patient not found or deletion failed.");
             }

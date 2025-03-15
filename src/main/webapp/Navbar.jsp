@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/Navbar.css">
-    <title>Smart Hospital</title>
+    <title>Doctors Appointment Book</title>
    
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="/" class="navbar-logo">Smart Hospital</a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <a href="/" class="navbar-logo">Doctors Appointment Book</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button> 
             <ul id="navLinks" class="nav-links">
                 <li><a href="Home.jsp" class="nav-item">Home</a></li>
                 <li><a href="AnnualCalendar.jsp" class="nav-item">Annual Calendar</a></li>

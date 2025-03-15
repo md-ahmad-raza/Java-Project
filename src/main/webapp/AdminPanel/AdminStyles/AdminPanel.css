@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #1d2b64, #1d2b64, #1e3c72);
+            color: #fff;
+            padding: 30px 20px;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar h1 {
+            font-size: 26px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ffcc00;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #ffcc00;
+            color: #1d2b64;
+            transform: scale(1.05);
+        }
+
+        .logout-btn {
+            background: #e63946;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 90%;
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: bold;
+    
+        }
+
+        .logout-btn:hover {
+            background: #d62828;
+            transform: scale(1.05);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            margin-left: 300px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 300px);
+        }
+
+        .main-content h2 {
+            color: #1d2b64;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            color: #6c757d;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+            }
+        }
