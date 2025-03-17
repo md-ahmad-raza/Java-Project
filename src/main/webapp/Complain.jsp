@@ -14,7 +14,7 @@
 
     <div class="complaint-page">
         <div class="form-container">
-            <h2 class="form-title">Complaint Management</h2>
+            <h2 class="form-title">Complaint Box</h2>
 
             <!-- Display success/error messages -->
             <% 

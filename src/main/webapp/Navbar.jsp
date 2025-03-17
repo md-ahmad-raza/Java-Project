@@ -11,13 +11,13 @@
 <body>
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="/" class="navbar-logo">Doctors Appointment Book</a>
+            <a class="navbar-logo">Doctors Appointment Book</a>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button> 
             <ul id="navLinks" class="nav-links">
                 <li><a href="Home.jsp" class="nav-item">Home</a></li>
                 <li><a href="AnnualCalendar.jsp" class="nav-item">Annual Calendar</a></li>
                 <li><a href="Appointment.jsp" class="nav-item">Appointment</a></li>
-                 <li><a href="AdminPanel/AboutDoctors.jsp" class="nav-item">About Doctors</a></li>   
+                 <li><a href="AboutDoctors.jsp" class="nav-item">Doctors</a></li>   
                 <li><a href="About.jsp" class="nav-item">About Us</a></li>
                 <li><a href="Gallery.jsp" class="nav-item">Gallery</a></li>
                 <li><a href="Contact.jsp" class="nav-item">Contact Us</a></li>

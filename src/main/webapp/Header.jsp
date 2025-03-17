@@ -14,7 +14,7 @@
         <div class="header-container">
             <div class="header-left">
                 <a href="mailto:smarthospitalrc@gmail.com" class="email-link">
-                    📧 smarthospitalrc@gmail.com
+                    abc@gmail.com
                 </a>
             </div>
             <div class="header-right">
