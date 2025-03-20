@@ -1,0 +1,98 @@
+.profile-page {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #e3f2fd; /* Light blue background for a modern look */
+}
+
+.profile-wrapper {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  border: 2px solid #4CAF50; /* Subtle border for better structure */
+}
+
+.profile-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2e7d32; /* Dark green for a professional look */
+  font-weight: bold;
+}
+
+.profile-details {
+  margin: 1rem 0;
+  text-align: left;
+  background-color: #f1f8e9; /* Soft green tint for better visibility */
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #c8e6c9;
+  font-size: 1rem;
+  color: #4e4e4e;
+}
+
+.detail-item:last-child {
+  border-bottom: none; /* Removes the last border for a cleaner look */
+}
+
+.profile-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.edit-btn, .logout-btn {
+  width: 100px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.logout-btn {
+  background-color: #f44336; /* Bright red for clear logout intent */
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05); /* Slight zoom on hover for interactive feedback */
+}
+
+.logout-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 480px) {
+  .profile-wrapper {
+      padding: 1.5rem;
+      max-width: 100%;
+      box-shadow: none; /* Removing shadow for smaller screens */
+      border: none;
+  }
+
+  .profile-actions {
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 0.5rem;
+  }
+
+  .edit-btn, .logout-btn {
+      width: 100%; /* Full width for better touch experience */
+  }
+}

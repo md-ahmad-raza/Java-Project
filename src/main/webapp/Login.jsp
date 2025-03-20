@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="Style/Login.css"> <!-- Link to external CSS -->
 </head>
 <body>
-<%@ include file="Header.jsp" %>
-<%@ include file="Navbar.jsp" %>
+
 
 <div class="login-page">
     <div class="login-wrapper">

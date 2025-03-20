@@ -8,63 +8,62 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 @WebServlet("/DeleteServlet")
 public class DeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Database credentials
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/Doctors";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "root";
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteServlet() {
-        super();
+    // Handle GET requests (redirects to the appointment list)
+    protected void dopost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect("ShowAllPatient?error=GET method not allowed. Use POST instead.");
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
+    // Handle DELETE operations via POST
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Get the patient ID from the request
-        String patientId = request.getParameter("id");
-
-        // Load MySQL driver
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            response.getWriter().println("Error: Unable to load database driver.");
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.isEmpty()) {
+            response.sendRedirect("ShowAllPatient?error=Invalid ID");
             return;
         }
 
-        // Delete patient data from the database
-        try (Connection con = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement ps = con.prepareStatement("DELETE FROM appointments WHERE id = ?")) {
+        int id = Integer.parseInt(idParam);
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        Statement stmt = null;
 
-            ps.setInt(1, Integer.parseInt(patientId));
+        try {
+            // Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Doctors", "root", "root");
 
-            int rowsDeleted = ps.executeUpdate();
-            if (rowsDeleted > 0) {
-                response.sendRedirect("ShowAllPatient"); // Redirect to the patient list after deletion
-            } else {
-                response.getWriter().println("Error: Patient not found or deletion failed.");
-            }
+            // Step 1: Delete the record
+            String deleteSQL = "DELETE FROM appointments WHERE id = ?";
+            pstmt = conn.prepareStatement(deleteSQL);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
 
-        } catch (SQLException e) {
+            // Step 2: Reorder IDs sequentially
+            stmt = conn.createStatement();
+            stmt.execute("SET @count = 0;");
+            stmt.execute("UPDATE appointments SET id = @count := @count + 1 ORDER BY id;");
+
+            // Step 3: Reset AUTO_INCREMENT
+            stmt.execute("ALTER TABLE appointments AUTO_INCREMENT = (SELECT MAX(id) + 1 FROM appointments);");
+
+            // Redirect after successful deletion
+            response.sendRedirect("ShowAllPatient?success=Deleted successfully");
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            response.getWriter().println("Error: Database operation failed.");
+            response.sendRedirect("ShowAllPatient?error=Database error: " + e.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Forward to doGet for handling
-        doGet(request, response);
     }
 }
