@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="Style/Profile.css">
+    <link rel="stylesheet" href="Style/EditProfile.css">
 </head>
 <body>
     <div class="profile-page">

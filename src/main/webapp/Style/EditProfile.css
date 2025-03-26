@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Profile Page Wrapper */
+.profile-page {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: 3px solid #25be95;
+}
+
+.profile-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #25be95;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.detail-item label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.detail-item input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.detail-item input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styles */
+.profile-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.save-btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.save-btn:hover {
+    background: #0056b3;
+}
+
+.cancel-btn {
+    background: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #a71d2a;
+}

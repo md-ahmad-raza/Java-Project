@@ -32,7 +32,7 @@
         <div class="contact-content">
             <!-- Contact Form -->
             <div class="contact-form">
-                <h3>Get in Touch</h3>
+                <h3>Give Feedback</h3>
                 <form action="sendContactMessage" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -53,9 +53,9 @@
             <!-- Contact Info -->
             <div class="contact-info">
                 <h3>Our Address</h3>
-                <p>1234 Healthcare Blvd, Wellness City, Country</p>
-                <p>Email: contact@healthcare.com</p>
-                <p>Phone: +1 234 567 890</p>
+                <p>Bag Bazar,main road, Janakpur</p>
+                <p>Email: Healthcare@gmail.com</p>
+                <p>Phone: +977 843 358 5765</p>
 
                 <h3>Follow Us</h3>
                 <div class="social-icons">

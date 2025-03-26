@@ -53,6 +53,8 @@
                         <option value="Cardiology">Cardiology</option>
                         <option value="Orthopedics">Orthopedics</option>
                         <option value="Pediatrics">Pediatrics</option>
+                         <option value="Pediatrics">Surgery</option>
+                          <option value="Pediatrics">Dental Care</option>
                     </select>
                 </div>
 
@@ -71,7 +73,7 @@
                 </div>
 
                 <div class="form-buttons">
-                    <button type="reset" class="btn btn-reset">Reset</button>
+                    <button type="reset" class="btn btn-reset">Clear</button>
                     <button type="submit" class="btn btn-submit">Submit</button>
                 </div>
             </form>

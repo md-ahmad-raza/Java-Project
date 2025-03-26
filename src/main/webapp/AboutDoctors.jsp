@@ -12,7 +12,7 @@
 <%@ include file="Navbar.jsp" %>
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">About Doctors</h2>
+    <h2 class="text-center mb-4">Our Doctors</h2>
 
     <!-- Static Doctor List -->
     <div class="doctor-card">

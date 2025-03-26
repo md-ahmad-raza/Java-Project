@@ -1,98 +1,116 @@
+@charset "UTF-8";
+/* Background with a blue gradient */
 .profile-page {
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: #e3f2fd; /* Light blue background for a modern look */
+  background: linear-gradient(to right, #2141ab, #3b5ac5, #667fd2);
+  animation: bgAnimation 10s infinite alternate ease-in-out;
 }
 
+/* Subtle animation for background movement */
+@keyframes bgAnimation {
+  0% { background-position: left; }
+  100% { background-position: right; }
+}
+
+/* Glassmorphism Effect */
 .profile-wrapper {
-  background-color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
   width: 100%;
   max-width: 420px;
   text-align: center;
-  border: 2px solid #4CAF50; /* Subtle border for better structure */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease-in-out;
 }
 
-.profile-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #2e7d32; /* Dark green for a professional look */
-  font-weight: bold;
+.profile-wrapper:hover {
+  transform: translateY(-5px);
 }
 
-.profile-details {
-  margin: 1rem 0;
-  text-align: left;
-  background-color: #f1f8e9; /* Soft green tint for better visibility */
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.detail-item {
+/* Profile Image Container */
+.profile-image-container {
   display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #c8e6c9;
-  font-size: 1rem;
-  color: #4e4e4e;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 60px; /* Increased for better visibility */
+  height: 60px;
+  overflow: hidden; /* Ensures no overflow */
 }
 
-.detail-item:last-child {
-  border-bottom: none; /* Removes the last border for a cleaner look */
+/* Profile Image */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
 }
 
+/* Profile Actions: Vertical stacking */
 .profile-actions {
   margin-top: 2rem;
   display: flex;
-  gap: 1rem;
+  flex-direction: column; /* Ensures vertical alignment */
+  gap: 1rem; /* Space between buttons */
   justify-content: center;
+  align-items: center;
 }
 
+/* Button Styling: Equal width & height */
 .edit-btn, .logout-btn {
-  width: 100px;
-  background-color: #4CAF50;
+  width: 160px;
+  height: 50px;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
   color: #fff;
   border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.8rem 0;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  font-size: 1rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Logout Button with Red Gradient */
 .logout-btn {
-  background-color: #f44336; /* Bright red for clear logout intent */
+  background: linear-gradient(135deg, #f44336, #D32F2F);
 }
 
-.edit-btn:hover {
-  background-color: #45a049;
-  transform: scale(1.05); /* Slight zoom on hover for interactive feedback */
+/* Hover Effects */
+.edit-btn:hover, .logout-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-.logout-btn:hover {
-  background-color: #e53935;
-  transform: scale(1.05);
-}
-
-/* Media Queries for Responsiveness */
+/* Responsive Design */
 @media (max-width: 480px) {
   .profile-wrapper {
-      padding: 1.5rem;
-      max-width: 100%;
-      box-shadow: none; /* Removing shadow for smaller screens */
-      border: none;
+    padding: 1.5rem;
+    max-width: 100%;
+    box-shadow: none;
+    border: none;
   }
 
   .profile-actions {
-      flex-direction: column; /* Stack buttons vertically */
-      gap: 0.5rem;
+    gap: 0.5rem;
   }
 
   .edit-btn, .logout-btn {
-      width: 100%; /* Full width for better touch experience */
+    width: 100%; /* Full width for mobile */
+    height: 50px;
   }
 }

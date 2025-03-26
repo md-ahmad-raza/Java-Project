@@ -45,15 +45,15 @@
                 <ul class="footer-links">
                     <li class="contact-item">
                         <img src="<%= request.getContextPath() %>/Image/email.png" alt="Email Icon" class="contact-icon" />
-                        smarthospitalrc@gmail.com
+                        Healthcare@gmail.com
                     </li>
                     <li class="contact-item">
                         <img src="<%= request.getContextPath() %>/Image/phone.png" alt="Phone Icon" class="contact-icon" />
-                        9999955555
+                        84345857865
                     </li>
                     <li class="contact-item">
                         <img src="<%= request.getContextPath() %>/Image/address.png" alt="Address Icon" class="contact-icon" />
-                        25 Kings Street, CA
+                        Bag Bazar, main road, Janakpur
                     </li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            &copy; Smart Hospital & Research Center 2024 All rights reserved
+            &copy; Healthcare & Research Center 2025 All rights reserved
         </div>
     </footer>
 </body>

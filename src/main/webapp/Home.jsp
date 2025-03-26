@@ -153,10 +153,10 @@
             <div class="doctors-container">
                 <%
                     String[][] doctors = {
-                        {"Image/doctor1.png", "Marc Parcival", "Professor"},
-                        {"Image/doctor2.png", "Sophie Taylor", "Pediatrician"},
-                        {"Image/doctor3.png", "David Smith", "Cardiologist"},
-                        {"Image/doctor4.png", "Emily Johnson", "Orthopedic Surgeon"}
+                        {"Image/doctor1.png", "Dr.Smith", "Surgeon"},
+                        {"Image/doctor2.png", "Dr.Marya", "General Physician"},
+                        {"Image/doctor3.png", "Rabada", "Orthopedic"},
+                        {"Image/doctor4.png", "Emily Johnson", "Deental Care"}
                     };
                     for (String[] doctor : doctors) {
                 %>

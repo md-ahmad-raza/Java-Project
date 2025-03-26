@@ -25,7 +25,7 @@
                         <option value="">Select a reason</option>
                         <option value="checkup">Yearly Check-Up</option>
                         <option value="consultation">Consultation</option>
-                        <option value="followup">Follow-Up</option>
+                        <option value="followup">Monthly Check-up</option>
                     </select>
 
                     <label for="name">Name</label>
@@ -51,7 +51,7 @@
                     </select>
                     
                     <div class="appointment-footer">
-                        <button type="reset" class="cancel-btn">Cancel</button>
+                        <button type="reset" class="cancel-btn">Clear</button>
                         <button type="submit" class="book-btn">Book Now</button>
                     </div>
                 </form>

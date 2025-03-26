@@ -75,7 +75,7 @@
        
 
         <footer>
-            <p>© 2025 Hospital Management System. All Rights Reserved.</p>
+            <p>© 2025 HealthCare. All Rights Reserved.</p>
         </footer>
     </div>
 <%@ include file="Footer.jsp" %>

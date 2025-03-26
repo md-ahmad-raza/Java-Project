@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Flyer</title>
+    <title>News</title>
     <link rel="stylesheet" href="Style/clinicnews.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
             <div class="company-logo">
                 <img src="Image/About.png" alt="Company Logo">
             </div>
-            <h1>Lorem Ipsum Is Simply Dummy</h1>
+            <h1>Our Key Points and Services</h1>
         </header>
 
         <!-- Banner Section -->
         <section class="banner">
             <div class="banner-text">
-                <p>See day about Med healthcare services.</p>
+                <p>You can See about our healthcare featurs and services.</p>
             </div>
             <div class="banner-image">
                 <img src="Image/image2.jpg" alt="Doctors">
@@ -31,16 +31,20 @@
 
         <!-- Services Section -->
         <section class="content">
-            <h2>1. Datis iure dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus facilisis velit ut est vehicula, a gravida felis fringilla.</p>
-            <h2>2. Ut velit enim animim</h2>
-            <p>Suspendisse potenti. Quisque sit amet dolor eget urna luctus posuere. Aenean id lorem eu lorem venenatis convallis.</p>
+            <h2>Our Services</h2>
+            <p>Hospitals offer a wide range of services, from emergency care and inpatient treatment to outpatient consultations,
+             specialized treatments, and rehabilitation, all crucial for the diagnosis, treatment, and care of patients.</p>
+            <h2>Our Features</h2>
+            <p>Hospitals provide essential healthcare services, ranging from emergency care.</p>
+            <p>We surgeries to specialized treatments and research, offering both inpatient and outpatient care.</p>
+            <p>Our contributing to the overall health and well-being of the community.</p>
         </section>
 
         <!-- Main Text Section -->
         <section class="main-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Suspendisse potenti. Curabitur at metus augue.</p>
-            <p>Curabitur convallis urna at libero tempus, non tempus urna elementum. Nam sollicitudin semper justo, nec scelerisque ligula sagittis vel.</p>
+            <p>Here we mentioned our some key points and functions of a hospital includes</p>
+            <p> patient care, emergency services, diagnostics, surgery, rehabilitation, education (in teaching hospitals),
+             research, preventive care, long-term care, and community health services.</p>
         </section>
 
         <!-- Footer -->

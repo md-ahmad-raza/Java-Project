@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24/7 Service - Hospital Management System</title>
+    <title>Our Service </title>
     <link rel="stylesheet" type="text/css" href="Style/service.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <h1>24/7 Service in Hospital Management System</h1>
+        <h1>24/7 Service Available</h1>
         <p>Ensuring uninterrupted healthcare access for patients, staff, and doctors at any time.</p>
     </section>
 
@@ -66,7 +66,7 @@
    
     <!-- Footer -->
     <footer>
-        <p>© 2025 Hospital Management System. All Rights Reserved.</p>
+        <p>© 2025 HealthCare. All Rights Reserved.</p>
     </footer>
 
 </body>
