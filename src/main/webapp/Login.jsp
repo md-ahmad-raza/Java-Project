@@ -12,9 +12,9 @@
 
 <div class="login-page">
     <div class="login-wrapper">
-        <h1 class="login-title">User Login Panel</h1>
+        <h1 class="login-title">Login</h1>
         <div class="login-box">
-            <h2>Login Here</h2>
+        
          
             <form action="LoginServlet" method="POST"> <!-- Update action to your backend logic -->
                 <div class="input-group">
