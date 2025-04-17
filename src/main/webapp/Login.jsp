@@ -16,7 +16,7 @@
         <div class="login-box">
         
          
-            <form action="LoginServlet" method="POST"> <!-- Update action to your backend logic -->
+            <form action="LoginServlet" method="POST"> <!--  Update action to your backend logic -->
                 <div class="input-group">
                     <label for="username">
                         <i class="icon-user"></i>
