@@ -15,6 +15,7 @@
             background-color: #f5f5f5;
         }
 
+
         .notification {
             display: none;
             position: fixed;
