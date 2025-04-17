@@ -31,8 +31,9 @@
 
         <div class="contact-content">
             <!-- Contact Form -->
+             <!-- Some Change -->
             <div class="contact-form">
-                <h3>Give Feedback</h3>
+                <h3>Give Feedbacks</h3>
                 <form action="sendContactMessage" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
