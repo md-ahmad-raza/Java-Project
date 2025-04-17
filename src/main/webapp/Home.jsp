@@ -26,7 +26,9 @@
         }
         window.onload = startCarousel;
     </script>
+   
 </head>
+
 <body>
     <div class="home-container">
         <!-- Hero Section -->
@@ -92,7 +94,7 @@
             </div>
             <div class="feature-card">
                 <h3>Top Doctors</h3>
-                <p>Consult with highly skilled specialists at your convenience.</p>
+                <p>Consult with highly skilled specialists at yours convenience.</p>
                <button class="read-more-btn" onclick="window.location.href='AboutDoctors.jsp'">Read More</button>
             </div>
             <div class="feature-card">
@@ -170,6 +172,7 @@
         </section>
     </div>
     <%@ include file="Footer.jsp" %>
+     <!-- Doctors Section Close -->
 
 </body>
 </html>
