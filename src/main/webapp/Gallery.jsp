@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
-    <link rel="stylesheet" href="Style/Gallery.css"> <!-- Update the path if needed -->
+    <link rel="stylesheet" href="Style/Gallery.css"> <!--  Update the path if needed -->
 </head>
 <body>
  <%@ include file="Header.jsp" %>
