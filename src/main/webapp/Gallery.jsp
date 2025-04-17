@@ -10,7 +10,7 @@
 <body>
  <%@ include file="Header.jsp" %>
   <%@ include file="Navbar.jsp" %>
-  <!--  -->
+  
     <div class="gallery-container">
         <div class="gallery-card">
             <img src="Image/gallery1.png" alt="Your Health" class="gallery-image" />
