@@ -80,7 +80,7 @@
                 %>
             </div>
         </div>
-        
+        <!-- close Date Section -->
     </div>
      <%@ include file="Footer.jsp" %>
 </body>
