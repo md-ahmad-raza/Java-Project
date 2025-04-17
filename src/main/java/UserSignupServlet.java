@@ -1,67 +1,80 @@
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import java.io.*;
+import java.sql.*;
+import java.net.URLEncoder;
 
 @WebServlet("/UserSignupServlet")
 public class UserSignupServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public UserSignupServlet() {
-        super();
-    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        // Retrieve and trim user input
+        String username = request.getParameter("username") != null ? request.getParameter("username").trim() : "";
+        String email = request.getParameter("email") != null ? request.getParameter("email").trim() : "";
+        String role = request.getParameter("role") != null ? request.getParameter("role").trim() : "";
+        String password = request.getParameter("password") != null ? request.getParameter("password").trim() : "";
+        String phone = request.getParameter("phone") != null ? request.getParameter("phone").trim() : "";
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve user input
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String role = request.getParameter("role"); 
-        String password = request.getParameter("password"); // Directly store the password
-        String phone = request.getParameter("phone");
+        // Basic validation
+        if (username.isEmpty() || email.isEmpty() || role.isEmpty() || password.isEmpty() || phone.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                URLEncoder.encode("All fields are required", "UTF-8"));
+            return;
+        }
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
 
         try {
             // Connect to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Doctors", "root", "root"); // Replace with your credentials
+            conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/Doctors?useSSL=false&serverTimezone=UTC", 
+                "root", "root");
 
-            // Insert user data into the database
+            if (conn == null || conn.isClosed()) {
+                response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                    URLEncoder.encode("Database connection failed", "UTF-8"));
+                return;
+            }
+
+            // Store plain text password (not hashed)
             String sql = "INSERT INTO D_users (username, email, role, password, phone) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, name);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
             pstmt.setString(2, email);
             pstmt.setString(3, role);
-            pstmt.setString(4, password); // Store actual password
+            pstmt.setString(4, password);
             pstmt.setString(5, phone);
 
             int rowsInserted = pstmt.executeUpdate();
 
             if (rowsInserted > 0) {
-                // Store user details in session
-                HttpSession session = request.getSession();
-                session.setAttribute("username", name);
-                session.setAttribute("email", email);
-                session.setAttribute("role", role);
-                session.setAttribute("phone", phone);
-
-                // Redirect to login page after successful signup
-                response.sendRedirect("Login.jsp?success=SignupSuccessful");
+                response.sendRedirect(request.getContextPath() + "/Login.jsp?success=" + 
+                    URLEncoder.encode("Signup successful! Please login.", "UTF-8"));
             } else {
-                response.sendRedirect("SignUp.jsp?error=SignupFailed");
+                response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                    URLEncoder.encode("Signup failed. Please try again.", "UTF-8"));
             }
-
-            // Close resources
-            pstmt.close();
-            conn.close();
-
+        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+            response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                URLEncoder.encode("Email already exists", "UTF-8"));
+        } catch (ClassNotFoundException e) {
+            response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                URLEncoder.encode("System error: Database driver not found", "UTF-8"));
+        } catch (java.sql.SQLException e) {
+            response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                URLEncoder.encode("Database error: " + e.getMessage(), "UTF-8"));
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("SignUp.jsp?error=DatabaseError");
+            response.sendRedirect(request.getContextPath() + "/SignUp.jsp?error=" + 
+                URLEncoder.encode("Unexpected error: " + e.getMessage(), "UTF-8"));
+        } finally {
+            try { if (pstmt != null) pstmt.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (conn != null) conn.close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 }

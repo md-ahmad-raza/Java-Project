@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,17 +75,37 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+        .error-message {
+            color: red;
+            margin-bottom: 15px;
+        }
+        .success-message {
+            color: green;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
-
     <div class="signup-container">
         <h2>Sign Up</h2>
-      
+        
+        <%-- Display error message if present --%>
+        <% if (request.getParameter("error") != null) { %>
+            <div class="error-message">
+                <%= request.getParameter("error") %>
+            </div>
+        <% } %>
+        
+        <%-- Display success message if present --%>
+        <% if (request.getParameter("success") != null) { %>
+            <div class="success-message">
+                <%= request.getParameter("success") %>
+            </div>
+        <% } %>
 
         <form action="UserSignupServlet" method="post">
-            <input type="text" class="input-box" name="name" placeholder="e.g. Enter your name" required>
-            <input type="email" class="input-box" name="email" placeholder="e.g. Enter your email" required>
+            <input type="text" class="input-box" name="username" placeholder="Enter your username" required>
+            <input type="email" class="input-box" name="email" placeholder="Enter your email" required>
             
             <!-- Role Selection Dropdown -->
             <select name="role" class="input-box1" required>
@@ -93,8 +114,8 @@
                 <option value="Admin">Admin</option>
             </select>
 
-            <input type="password" class="input-box" name="password" placeholder="e.g. Enter your password" required>
-            <input type="text" class="input-box" name="phone" placeholder="e.g. Enter your phone number" required>
+            <input type="password" class="input-box" name="password" placeholder="Enter your password" required>
+            <input type="text" class="input-box" name="phone" placeholder="Enter your phone number" required>
             
             <button type="submit" class="signup-btn">Sign Up</button>
         </form>
@@ -103,6 +124,5 @@
             <p><b>Already have an account? <a href="Login.jsp">Login</a></b></p>
         </div>
     </div>
-
 </body>
 </html>

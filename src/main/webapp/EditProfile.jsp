@@ -268,13 +268,15 @@
             <div class="avatar-upload">
                 <div class="profile-avatar">
                     <i class="fas fa-user" id="avatar-icon"></i>
-                    <img id="avatar-preview" class="avatar-preview" style="display: none;">
+                    <img id="avatar-preview" class="avatar-preview" style="display: none;" 
+                         src="${sessionScope.profileImage != null ? sessionScope.profileImage : ''}" 
+                         alt="Profile Image">
                 </div>
-                <input type="file" id="avatar-upload" class="avatar-upload-input" accept="image/*">
+                <input type="file" id="avatar-upload" class="avatar-upload-input" accept="image/*" name="profileImage">
             </div>
             <div class="profile-info">
                 <h1 class="profile-name">Edit Profile</h1>
-                <span class="profile-role">${user.userType}</span>
+                <span class="profile-role">${sessionScope.role}</span>
             </div>
         </div>
         
@@ -286,7 +288,7 @@
                             <h2 class="card-title">About</h2>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="about" rows="5" placeholder="Tell us about yourself">${user.about}</textarea>
+                            <textarea class="form-control" name="about" rows="5" placeholder="Tell us about yourself">${sessionScope.about}</textarea>
                         </div>
                     </div>
                 </div>
@@ -298,18 +300,18 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="${user.name}" required>
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="${sessionScope.username}" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="${user.email}" required>
+                            <input type="email" class="form-control" id="email" name="email" value="${sessionScope.email}" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" value="${user.phone}" required>
+                            <input type="tel" class="form-control" id="phone" name="phone" value="${sessionScope.phone}" required>
                         </div>
                         
                         <div class="form-group">
