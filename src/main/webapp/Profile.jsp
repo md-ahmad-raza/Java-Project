@@ -1,219 +1,345 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
-
-<%
-    // Retrieve the session
-    HttpSession sessionObj = request.getSession(false);
-
-    // Default values for profile data
-    String username = "Guest";
-    String email = "Not Available";
-    String phone = "Not Available";
-    String role = "User";
-    String profileImage = "images/default-profile.png"; // Default profile image
-
-    // Check if the session exists and retrieve user details safely
-    if (sessionObj != null) {
-        if (sessionObj.getAttribute("username") != null) {
-            username = (String) sessionObj.getAttribute("username");
-        }
-        if (sessionObj.getAttribute("email") != null) {
-            email = (String) sessionObj.getAttribute("email");
-        }
-        if (sessionObj.getAttribute("phone") != null) {
-            phone = (String) sessionObj.getAttribute("phone");
-        }
-        if (sessionObj.getAttribute("role") != null) {
-            role = (String) sessionObj.getAttribute("role");
-        }
-        if (sessionObj.getAttribute("profileImage") != null) {
-            profileImage = (String) sessionObj.getAttribute("profileImage");
-        }
-    }
-%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true" %>
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Background with a blue gradient */
-        .profile-page {
-            display: flex;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to right, #2141ab, #3b5ac5, #667fd2);
-            animation: bgAnimation 10s infinite alternate ease-in-out;
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
         }
 
-        @keyframes bgAnimation {
-            0% { background-position: left; }
-            100% { background-position: right; }
-        }
-
-        /* Glassmorphism Effect */
-        .profile-wrapper {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(15px);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .profile-wrapper:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Profile Image */
-        .profile-image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 1rem;
-            width: 80px;
-            height: 80px;
-            overflow: hidden;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            object-fit: cover;
-        }
-
-        /* Profile Details */
-        .profile-details {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .detail-item {
-            margin: 0.5rem 0;
-            font-size: 1rem;
-        }
-
-        .detail-item label {
+        .notification {
+            display: none;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 12px 20px;
+            border-radius: 5px;
             font-weight: bold;
-            color: #fff;
+            z-index: 9999;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
 
-        .detail-item span {
-            color: #f8f9fa;
+        .notification.success {
+            background-color: #28a745;
+            color: white;
         }
 
-        /* Profile Actions */
-        .profile-actions {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            justify-content: center;
-            align-items: center;
+        .notification.error {
+            background-color: #dc3545;
+            color: white;
         }
 
-        /* Button Styling */
-        .edit-btn, .logout-btn {
-            width: 160px;
-            height: 50px;
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            color: #fff;
-            border: none;
+        .profile-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
             border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            letter-spacing: 1px;
-            font-size: 1rem;
-            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profile-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-avatar-container {
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007bff;
+        }
+
+        .upload-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #007bff;
+            color: white;
+            padding: 6px 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            border: 2px solid white;
+        }
+
+        .profile-info {
+            margin-left: 25px;
+        }
+
+        .profile-name {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .profile-role {
+            color: #6c757d;
+            font-size: 16px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .profile-contact {
+            margin-top: 10px;
+            color: #444;
+        }
+
+        .contact-item {
+            margin-bottom: 4px;
         }
 
         .logout-btn {
-            background: linear-gradient(135deg, #f44336, #D32F2F);
+            text-decoration: none;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background-color 0.3s;
         }
 
-        .edit-btn:hover, .logout-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        .logout-btn:hover {
+            background-color: #c82333;
         }
 
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .profile-wrapper {
-                padding: 1.5rem;
-                max-width: 100%;
-                box-shadow: none;
-                border: none;
-            }
+        .profile-body {
+            display: flex;
+        }
 
-            .profile-actions {
-                gap: 0.5rem;
-            }
+        .profile-sidebar {
+            flex: 1;
+            margin-right: 20px;
+        }
 
-            .edit-btn, .logout-btn {
-                width: 100%;
-                height: 50px;
+        .profile-main {
+            flex: 3;
+        }
+
+        .profile-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .edit-btn {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .edit-btn:hover {
+            color: #0056b3;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .info-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .profile-body {
+                flex-direction: column;
+            }
+            .profile-sidebar {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="profile-page">
-        <div class="profile-wrapper">
-            <h1 class="profile-title">User Profile</h1>
 
-            <!-- Profile Image -->
-            <div class="profile-image-container">
-                <img src="Image/user.png " alt="Profile Image" class="profile-image">
+    <!-- Notification divs -->
+    <div id="success-notification" class="notification success"></div>
+    <div id="error-notification" class="notification error"></div>
+
+    <div class="profile-container">
+        <!-- Header -->
+        <div class="profile-header">
+            <div class="profile-left">
+                <div class="profile-avatar-container">
+                    <img id="profile-image" class="profile-avatar" 
+                         src="<%= session.getAttribute("profileImage") != null 
+                                ? request.getContextPath() + "/" + session.getAttribute("profileImage") 
+                                : "https://via.placeholder.com/100" %>" 
+                         alt="Profile Image">
+                    <div class="upload-btn" onclick="document.getElementById('file-input').click()">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <form id="image-upload-form" action="UploadProfileImageServlet" method="post" enctype="multipart/form-data">
+                        <input type="file" id="file-input" name="profileImage" accept="image/*" style="display: none;">
+                    </form>
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name"><%= session.getAttribute("username") %></h1>
+                    <span class="profile-role"><%= session.getAttribute("role") %></span>
+                    <div class="profile-contact">
+                        <div class="contact-item"><%= session.getAttribute("email") %></div>
+                        <div class="contact-item"><%= session.getAttribute("phone") %></div>
+                    </div>
+                </div>
             </div>
+            <div class="profile-right">
+                <a href="LogoutServlet" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
 
-            <!-- Profile Details -->
-            <div class="profile-details">
-                <div class="detail-item">
-                    <label>Username:</label>
-                    <span><%= username %></span>
-                </div>
-
-                <div class="detail-item">
-                    <label>Email:</label>
-                    <span><%= email %></span>
-                </div>
-
-                <div class="detail-item">
-                    <label>Phone:</label>
-                    <span><%= phone %></span>
-                </div>
-
-                <div class="detail-item">
-                    <label>Role:</label>
-                    <span><%= role %></span>
+        <!-- Body -->
+        <div class="profile-body">
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">About</h2>
+                        <a href="EditProfileServlet" class="edit-btn">Edit</a>
+                    </div>
+                    <p>Welcome to your profile page. You can view and edit your personal information here.</p>
                 </div>
             </div>
-
-            <!-- Profile Actions -->
-            <div class="profile-actions">
-                <form action="EditProfile.jsp" method="post">
-                    <button class="edit-btn" type="submit">Edit Profile</button>
-                </form>
-                <form action="LogoutServlet" method="post">
-                    <button class="logout-btn" type="submit">Logout</button>
-                </form>
+            <div class="profile-main">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Personal Information</h2>
+                        <a href="EditProfileServlet" class="edit-btn">Edit</a>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Username</div>
+                            <div class="info-value"><%= session.getAttribute("username") %></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value"><%= session.getAttribute("email") %></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value"><%= session.getAttribute("phone") %></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Role</div>
+                            <div class="info-value"><%= session.getAttribute("role") %></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Last Login</div>
+                            <div class="info-value"><%= new Date() %></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profile-image').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+
+                const formData = new FormData(document.getElementById('image-upload-form'));
+                fetch('UploadProfileImageServlet', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showNotification('Profile image updated successfully!', 'success');
+                        return response.text();
+                    }
+                    throw new Error('Upload failed');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Error updating profile image', 'error');
+                });
+            }
+        });
+
+        function showNotification(message, type) {
+            const notification = document.getElementById(`${type}-notification`);
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        window.onload = function() {
+            const successMsg = "<%= session.getAttribute("success") != null ? session.getAttribute("success") : "" %>";
+            const errorMsg = "<%= session.getAttribute("error") != null ? session.getAttribute("error") : "" %>";
+
+            if (successMsg) {
+                showNotification(successMsg, 'success');
+                <% session.removeAttribute("success"); %>
+            }
+            if (errorMsg) {
+                showNotification(errorMsg, 'error');
+                <% session.removeAttribute("error"); %>
+            }
+        };
+    </script>
 </body>
 </html>

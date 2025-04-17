@@ -21,7 +21,7 @@
 
 
                     <li><a href="/Doctors-Appointment-Book/NewRegisteredPatientServlet">Show New Registered Patients</a></li>
-                    <li><a href="/Doctors-Appointment-Book/AboutDoctors.jsp">Show All Doctors</a></li>
+                    <li><a href="/Doctors-Appointment-Book/AdminPanel/AdminDoctorsList.jsp">Show All Doctors</a></li>
                     <li><a href="/Doctors-Appointment-Book/AdminPanel/AddDoctors.jsp">Add Doctors</a></li>
                     <li><a href="/Doctors-Appointment-Book/ShowComplainServlet">Show Complaints</a></li>
                     <li><a href="/Doctors-Appointment-Book/AdminLogOutServlet" class="logout-btn">LogOut</a></li>

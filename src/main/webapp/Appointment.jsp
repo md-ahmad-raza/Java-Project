@@ -23,9 +23,10 @@
                     <label for="reason">Reason for Visit</label>
                     <select name="reason" required>
                         <option value="">Select a reason</option>
-                        <option value="checkup">Yearly Check-Up</option>
+                        <option value="checkup">Check-Up</option>
+                        <option value="admit">Admit</option>
                         <option value="consultation">Consultation</option>
-                        <option value="followup">Monthly Check-up</option>
+                
                     </select>
 
                     <label for="name">Name</label>
