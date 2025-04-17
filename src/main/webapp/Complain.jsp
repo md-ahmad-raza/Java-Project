@@ -16,7 +16,7 @@
         <div class="form-container">
             <h2 class="form-title">Complaint Box</h2>
 
-            <!-- Display success/error messages -->
+            <!-- Display success/error messages  -->
             <% 
                 String status = request.getParameter("status");
                 if ("success".equals(status)) { 
